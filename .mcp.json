@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "grasshopper-enhanced": {
+      "command": "/Users/laihongyi/Downloads/專案/程式專案/grasshopper-mcp-enhanced/venv/bin/python",
+      "args": [
+        "/Users/laihongyi/Downloads/專案/程式專案/grasshopper-mcp-enhanced/python_bridge/bridge_enhanced.py"
+      ],
+      "env": {}
+    }
+  }
+}

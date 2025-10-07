@@ -27,13 +27,20 @@
 
 ## 專案簡介
 
-**Grasshopper MCP Enhanced** 是一個增強版的 Grasshopper MCP 橋接服務器，在原有功能基礎上新增了 **10+ 個教學導向功能**，讓教師能夠：
+**Grasshopper MCP Enhanced** 是一個增強版的 Grasshopper MCP 橋接服務器，讓 **Claude AI 能夠理解和分析 Grasshopper 檔案**。
 
-✨ **自動創建練習題** - 批量生成標準化練習
-📊 **自動評分系統** - 分析學生作業並評分
-🎯 **參數動態控制** - 遠程調整 Slider、Panel 等組件
-🔍 **詳細組件分析** - 獲取組件完整資訊
-📦 **批量操作** - 一次性設置多個組件
+### 🎯 核心價值
+
+這不只是 API 工具，而是 **AI 輔助的 Grasshopper 教學系統**：
+
+🧠 **理解 Grasshopper** - AI 能讀取組件、連接、資料結構
+💬 **自然語言互動** - 學生用人話提問，AI 給出專業建議
+🎓 **智慧評分系統** - AI 協作評分，給出具體改進建議
+📊 **深度分析** - 解釋 Data Tree、連接邏輯、設計模式
+
+**關鍵差異**：
+- ❌ 傳統方式：數組件數量 → 機械式評分
+- ✅ AI 協作：理解設計邏輯 → 智慧分析 → 具體建議
 
 ---
 
@@ -130,68 +137,24 @@ python python_bridge/bridge_enhanced.py
 
 ---
 
-## 使用範例
+## 核心能力
 
-### 範例 1: 自動創建練習題
+本專案的核心目標是建立 **AI 輔助的 Grasshopper 教學助手**，能夠：
 
-```python
-from bridge_enhanced import add_component_advanced, set_panel_text
+### 🧠 理解與解釋
+- **分析 Grasshopper 組件**：解釋每個組件的功能、參數、用途
+- **解析資料結構**：說明 Data Tree、List、Branch 的結構與關係
+- **追蹤連結邏輯**：解釋組件之間的連接關係與資料流向
 
-# 創建帶初始值的 Slider
-slider = add_component_advanced(
-    "slider",
-    x=100, y=100,
-    initial_params={
-        "min": 0,
-        "max": 100,
-        "value": 50,
-        "name": "Radius"
-    }
-)
+### 💬 自然語言互動
+- **理解學生提問**：用自然語言描述需求（例如：「我想做一個圓形陣列」）
+- **給出建議方案**：推薦適合的組件組合與連接方式
+- **解釋設計邏輯**：說明為什麼這樣連接、參數如何影響結果
 
-# 創建提示 Panel
-panel = add_component_advanced(
-    "panel",
-    x=300, y=100,
-    initial_params={
-        "text": "調整 Slider 以改變圓的大小"
-    }
-)
-```
-
-### 範例 2: 自動評分系統
-
-```python
-from bridge_enhanced import get_document_info, find_components_by_type
-
-# 獲取文檔資訊
-doc = get_document_info()
-
-# 搜尋所有 Slider
-sliders = find_components_by_type("GH_NumberSlider")
-
-# 評分邏輯
-score = 0
-if len(sliders) >= 2:
-    score += 20  # 使用了足夠的 Slider
-
-print(f"學生得分: {score}/100")
-```
-
-### 範例 3: 批量調整參數
-
-```python
-from bridge_enhanced import batch_set_sliders
-
-# 根據難度等級調整
-batch_set_sliders({
-    "slider_1": 25,   # 簡單
-    "slider_2": 50,   # 中等
-    "slider_3": 75    # 困難
-})
-```
-
-更多範例請查看 [examples/](examples/) 目錄。
+### 🎓 教學輔助
+- **即時答疑**：學生遇到問題時提供解釋
+- **最佳實踐建議**：指導更好的 Grasshopper 工作流程
+- **錯誤診斷**：分析為什麼運算結果不如預期
 
 ---
 
@@ -199,29 +162,32 @@ batch_set_sliders({
 
 ### 📖 完整文檔
 
+- **[AI 評分系統](docs/AI_GRADING_SYSTEM.md)** - ⭐ 核心功能說明
 - **[API 參考手冊](docs/API_REFERENCE.md)** - 完整 API 說明與範例
 - **[使用說明](docs/README_ENHANCED.md)** - 詳細功能介紹
 - **[實作指南](docs/IMPLEMENTATION_GUIDE.md)** - C# 端編譯指南
 - **[教學文件](docs/Grasshopper_教學文件.md)** - Grasshopper 教學應用
 
-### 🎓 教學應用
+### 🎓 教學應用場景
 
 本專案特別適合：
 
-1. **Grasshopper 課程教學**
-   - 自動創建標準化練習
-   - 確保每個學生起點一致
-   - 遠程調整參數展示效果
+1. **即時答疑與解釋**
+   - 學生：「這個 Shift List 是做什麼的？」
+   - AI：分析組件功能、參數、連接關係，給出清楚解釋
 
-2. **作業自動評分**
-   - 分析組件類型與數量
-   - 檢查連接關係
-   - 生成評分報告
+2. **需求理解與建議**
+   - 學生：「我想做一個螺旋樓梯」
+   - AI：理解需求，推薦組件組合（Helix、Extrude、Array）與連接方式
 
-3. **互動式教學**
-   - 根據學生表現調整難度
-   - 即時反饋與提示
-   - 進度追蹤
+3. **資料結構診斷**
+   - 學生：「為什麼我的 List 數量不對？」
+   - AI：分析 Data Tree 結構，解釋 Branch、Path 的邏輯，找出問題
+
+4. **最佳實踐指導**
+   - 分析學生的 Grasshopper 檔案
+   - 提出改進建議（簡化邏輯、優化效能）
+   - 教導正確的 Grasshopper 思維方式
 
 ---
 
@@ -234,16 +200,11 @@ grasshopper-mcp-enhanced/
 ├── .gitignore                     # Git 忽略文件
 │
 ├── python_bridge/                 # Python MCP 服務器
-│   └── bridge_enhanced.py         # 增強版橋接服務器
+│   └── bridge_enhanced.py         # 增強版橋接服務器（分析與解釋核心）
 │
 ├── csharp_source/                 # C# 源碼
 │   ├── ComponentCommandHandler_Enhanced.cs
 │   └── GrasshopperCommandRegistry_Enhanced.cs
-│
-├── examples/                      # 使用範例
-│   ├── README.md                  # 範例說明
-│   ├── create_circle_exercise.py  # 自動創建練習題
-│   └── check_student_work.py      # 自動評分系統
 │
 ├── tests/                         # 測試腳本
 │   ├── test_basic.py              # 基礎功能測試
