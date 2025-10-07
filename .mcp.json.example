@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "grasshopper-enhanced": {
+      "command": "/path/to/your/venv/bin/python",
+      "args": [
+        "/path/to/grasshopper-mcp-enhanced/python_bridge/bridge_enhanced.py"
+      ],
+      "env": {}
+    }
+  }
+}

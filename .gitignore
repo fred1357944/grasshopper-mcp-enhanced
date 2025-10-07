@@ -66,3 +66,11 @@ Thumbs.db
 # Project specific
 test_grasshopper_mcp.gh
 student_*.gh
+
+# Claude Code & MCP
+.claude/
+.mcp.json
+
+# Local upload instructions
+UPLOAD_INSTRUCTIONS.md
+GITHUB_UPLOAD_GUIDE.md
